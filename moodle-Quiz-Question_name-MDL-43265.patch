@@ -1,0 +1,26 @@
+From 50dd3ef021a1030202ae00888c72e09a32c8231f Mon Sep 17 00:00:00 2001
+From: Plamen Vassilev <plamen.vassilev@elearningexperts.net>
+Date: Sun, 8 Dec 2013 17:50:32 -0400
+Subject: [PATCH] Issue MDL-43265 by plamen.vassilev@elearningexperts.net:
+ Fixed Quiz question name limit to 255 chars to avoid DB Write errors
+
+---
+ question/type/edit_question_form.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/question/type/edit_question_form.php b/question/type/edit_question_form.php
+index a186eba..c1eff4c 100644
+--- a/question/type/edit_question_form.php
++++ b/question/type/edit_question_form.php
+@@ -181,7 +181,7 @@ abstract class question_edit_form extends question_wizard_form {
+         }
+ 
+         $mform->addElement('text', 'name', get_string('questionname', 'question'),
+-                array('size' => 50));
++                array('size' => 50, 'maxlength' => 255));
+         $mform->setType('name', PARAM_TEXT);
+         $mform->addRule('name', null, 'required', null, 'client');
+ 
+-- 
+1.8.3.4 (Apple Git-47)
+
